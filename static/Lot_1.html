@@ -10,43 +10,45 @@
   <link rel="stylesheet" type="text/css" href="./Smart_Lot_style.css">
   <title>Parking Lot 1</title>
 </head>
-  <body style="background-color: rgb(37,40,48);">
-    <nav class="navbar navbar-inverse">
+<body style="background-color: rgb(37,40,48);">
+  <nav class="navbar navbar-inverse">
     <div class="container-fluid">
       <div class="navbar-header">
         <a class="navbar-brand" href="Smart_lot.html" style="color: rgb(25,151,198)">Smart Lot</a>
       </div>
       <div class="brand visible-lg-block">
-      <div class="nav navbar-nav">
-        <li><a href="Smart_Lot.html">Parking Lots</a></li>
-        <li class="active"><a href="Lot_1.html">Lot 1</a></li>
-        <li><a href="Lot_2.html">Lot 2</a></li>
-        <li><a href="Lot_3.html">Lot 3</a></li>
-        <li><a href="Lot_4.html">Lot 4</a></li>
+        <div class="nav navbar-nav">
+          <li><a href="Smart_Lot.html">Parking Lots</a></li>
+          <li class="active"><a href="Lot_1.html">Lot 1</a></li>
+          <li><a href="Lot_2.html">Lot 2</a></li>
+          <li><a href="Lot_3.html">Lot 3</a></li>
+          <li><a href="Lot_4.html">Lot 4</a></li>
+        </div>
       </div>
-      </div>  
     </div>
   </nav>
   <h2> Parking Lot 1 </h2>
-<div ng-app="myApp" ng-controller="myCtrl">
-  <table>
-    <tr>
-      <td> Floor 1: </td>
-      <td> <input ng-model="floor1" data-ng-change="change()"> </td>
-      <td style = "background-color: {{floor1Col}}" ng-model="floor1Col"> {{floor1Space}} </td>
-    </tr>
-    <tr>
-      <td> Floor 2: </td>
-      <td> <input ng-model="floor2" data-ng-change="change()"> </td>
-      <td style = "background-color: {{floor2Col}}" ng-model="floor2Col"> {{floor2Space}} </td>
-    </tr>
-    <tr>
-      <td> Total Cars in Garage: </td>
-      <td> {{total_cars}} </td>
-    </tr>
-  </table>
-</div>
+  <div ng-app="myApp" ng-controller="myCtrl" data-ng-init="fetch()">
+    <table>
+      <tr>
+        <td> Floor 1: </td>
+        <td style="color: white">
+          <form action="" method="post">
+            Floor 1<div >
+        </td>
+      </tr>
+      <tr>
+        <td> Floor 2: </td>
+        <td style="color: white">{{floor2}}</td>
+        <td style = "background-color: {{floor2Col}}" ng-model="floor2Col"> {{floor2Space}} </td>
+      </tr>
+      <tr>
+        <td> Total Cars in Garage: </td>
+        <td> {{total_cars}} </td>
+      </tr>
+    </table>
+  </div>
 
-<script src="./smart_lot_script.js"></script>
+  <script src="./smart_lot_script.js"></script>
 </body>
 </html>

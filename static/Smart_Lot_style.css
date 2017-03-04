@@ -28,16 +28,13 @@ input {
 }
 
 .thumbnail {
-    top: 15px;
-    bottom: 0;
-    left: 15px;
-    right: 0;
     height: 200px;
     text-align: center;
-    padding: 50px 60px;
+    padding: 40px 50px;
     border-radius: 20px;
 }
 
-.set-width {
-  width: 200px;
+.parking {
+  height: 25%;
+  width: 25%;
 }

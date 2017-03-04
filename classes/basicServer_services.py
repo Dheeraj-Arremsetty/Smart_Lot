@@ -1,12 +1,16 @@
 import os, json
+from pymongo import MongoClient
 from flask import jsonify, request, Response, redirect
+from twilio.rest import TwilioRestClient
 BASE_PATH = str(os.path.realpath(__file__))
 BASE_PATH = BASE_PATH.replace('basicServer_services.pyc', '')
 BASE_PATH = BASE_PATH.replace('basicServer_services.pyo', '')
 BASE_PATH = BASE_PATH.replace('basicServer_services.py', '')
 
 CLASS_PATH = BASE_PATH.replace('classes', '')
-
+connection_string = "mongodb://localhost"
+connection = MongoClient(connection_string)
+database = connection.Smart_Lot
 
 def register_services(app, WSGI_PATH_PREFIX):
     BaseServices(app, WSGI_PATH_PREFIX)
@@ -48,6 +52,11 @@ class BaseServices:
         self.app.add_url_rule(WSGI_PATH_PREFIX + '/services/giveJson', 'giveJson', self.giveJson, methods=['POST', 'GET'])
         self.app.add_url_rule(WSGI_PATH_PREFIX + '/services/add', 'add', self.add, methods=['POST', 'GET'])
         self.app.add_url_rule(WSGI_PATH_PREFIX + '/services/buttonPressed', 'buttonPressed', self.buttonPressed, methods=['POST', 'GET'])
+        self.app.add_url_rule(WSGI_PATH_PREFIX + '/services/testPymongo', 'testPymongo', self.testPymongo,
+                              methods=['POST', 'GET'])
+        self.app.add_url_rule(WSGI_PATH_PREFIX + '/services/vehicleExit', 'vehicleExit', self.vehicleExit,
+                              methods=['POST', 'GET'])
+
 
     def demo(self):
         return  'In DEMO method'
@@ -67,6 +76,8 @@ class BaseServices:
         status = params_data.get("status")
         print "id = ",id
         print "status = ",status
+        self.updateTotalOccupied(id,1)
+        # self.sendMessage("**************BUTTON PRESSED******************")
         return "**************BUTTON PRESSED******************"
 
     def add(self):
@@ -79,3 +90,41 @@ class BaseServices:
         # b= 10
         c = int(a)+int(b)
         return str(c)
+    def testPymongo(self):
+        user = database.totalAvailable.find_one()
+        # print user
+        record = self.getTotalCount("IN102")
+        print "total count from DB=",record["total"]
+        print "total occupied from DB=", record["occupied"]
+        # print { k: user[k] for k in user}
+        return jsonify({ k: str(record[k]) for k in record})
+
+    def vehicleExit(self):
+        print "**************VEHICLE LEFT******************"
+        params_data = request.form if (request.method == 'POST') else request.args
+        id = params_data.get("id")
+        status = params_data.get("status")
+        print "id = ", id
+        print "status = ", status
+        # id = "IN101"
+        self.updateTotalOccupied(id, -1)
+        # self.sendMessage("**************VEHICLE LEFT******************")
+        return "**************VEHICLE LEFT******************"
+
+    def updateTotalOccupied(self,parkingLot,incrementValue=1):
+        record = self.getTotalCount(parkingLot)
+        calculatedCount = int(record["occupied"])
+        calculatedCount = calculatedCount + incrementValue
+        result = database.totalAvailable.update_one({"id":parkingLot},{"$set":{"occupied":calculatedCount}})
+        return True
+        # print "result from update",result["acknowledged"]
+
+    def getTotalCount(self, parkingLot):
+        record = database.totalAvailable.find_one({"id":parkingLot})
+        return record
+
+
+
+
+
+

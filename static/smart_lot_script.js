@@ -17,6 +17,10 @@ $scope.fetch = function(){
                     console.log(resp);
                     $scope.totalCarsData = resp;
                     $scope.floor1 = resp.data["IN101"]["occupied"];
+                    $scope.total = resp.data["IN101"]["total"];
+                    $scope.floor2 = 6 + Number($scope.floor1);
+                    $scope.floorTotal = Number($scope.floor1) + Number($scope.floor2);
+                    $scope.garageTotal = 2 * Number($scope.total);
     //                alert("Success");
                 },
                 function (resp) {
@@ -31,34 +35,7 @@ $scope.intervalFunction = function(){
     }, 1000)
   };
 
-//$scope.floor1 = "12";
-$scope.floor2 = "2";
 
-$scope.change = function(){
-
-  if(Number($scope.floor1) > 20) {
-    $scope.floor1Col = "red";
-    $scope.floor1Space = "No Vacancy";
-  }
-
-  if(Number($scope.floor1) <= 20) {
-    $scope.floor1Col = "green";
-    $scope.floor1Space = "Vacancy";
-  }
-
-
-  if(Number($scope.floor2) > 20) {
-    $scope.floor2Col = "red";
-    $scope.floor2Space = "No Vacancy";
-  }
-
-  if(Number($scope.floor2) <= 20) {
-    $scope.floor2Col = "green";
-    $scope.floor2Space = "Vacancy";
-  }
-
-  $scope.total_cars = Number($scope.floor1) + Number($scope.floor2);
-
-};
 $scope.intervalFunction();
+
 });

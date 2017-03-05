@@ -1,61 +1,45 @@
-  <!DOCTYPE html>
-  <html lang="en">
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="./Smart_Lot_style.css">
-    <title>Parking Lot 4</title>
-  </head>
-    <body style="background-color: rgb(37,40,48);">
-      <nav class="navbar navbar-inverse">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="Smart_lot.html" style="color: rgb(25,151,198)">Smart Lot</a>
-        </div>
-        <div class="brand visible-lg-block">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="./Smart_Lot_style.css">
+  <title>Parking Lot 4</title>
+</head>
+
+<body style="background-color: rgb(37,40,48);">
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="Smart_lot.html" style="color: rgb(25,151,198)">Smart_Lot</a>
+      </div>
+      <div class="brand visible-lg-block">
         <div class="nav navbar-nav">
           <li><a href="Smart_Lot.html">Parking Lots</a></li>
           <li><a href="Lot_1.html">Lot 1</a></li>
           <li><a href="Lot_2.html">Lot 2</a></li>
-          <li class="active"><a href="Lot_3.html">Lot 3</a></li>
-          <li><a href="Lot_4.html">Lot 4</a></li>
-        </div>
+          <li><a href="Lot_3.html">Lot 3</a></li>
+          <li class="active"><a href="Lot_4.html">Lot 4</a></li>
         </div>
       </div>
-    </nav>
-    <h2> Touhill Parking Lot </h2>
-  <div ng-app="myApp" ng-controller="myCtrl" data-ng-init="fetch()">
-    <!--<table>-->
-      <!--<tr>-->
-        <!--<td> Floor 1: </td>-->
-        <!--<td> <input ng-model="floor1" data-ng-change="change()"> </td>-->
-        <!--<td style = "background-color: {{floor1Col}}" ng-model="floor1Col"> {{floor1Space}} </td>-->
-      <!--</tr>-->
-      <!--<tr>-->
-        <!--<td> Floor 2: </td>-->
-        <!--<td> <input ng-model="floor2" data-ng-change="change()"> </td>-->
-        <!--<td style = "background-color: {{floor2Col}}" ng-model="floor2Col"> {{floor2Space}} </td>-->
-      <!--</tr>-->
-      <!--<tr>-->
-        <!--<td> Total Cars in Garage: </td>-->
-        <!--<td> {{total_cars}} </td>-->
-      <!--</tr>-->
-    <!--</table>-->
+    </div>
+  </nav>
 
-    <div class="col-md-6 col-sm-4 col-xs-6 thumbnail" style="background-color: rgb(27,201,142);">
-    <h1>Floor 1</h1>
-      <h1> {{ totalCarsData.data["IN101"]["occupied"] }} / {{ totalCarsData.data["IN101"]["total"] }}</h1>
-  </div>
-  <div class="col-md-6 col-sm-4 col-xs-6 thumbnail" style="background-color: rgb(228,216,54)">
-    <h1>Floor 2</h1>
-      <h1> {{ totalCarsData.data["IN101"]["occupied"] }} / {{ totalCarsData.data["IN101"]["total"] }}</h1>
-  </div>
-  </div>
+  <h2> Touhill Parking Lot </h2>
+
+  <div ng-app="myApp" ng-controller="myCtrl" data-ng-init="fetch()">
+    <div class="col-md-6 col-sm-4 col-xs-6">
+      <div class="thumbnail" style="background-color: rgb(27,201,142);">
+        <h1>Floor 1</h1>
+        <h2> 139/248 </h2>
+      </div>
+    </div>
 
   <script src="./smart_lot_script.js"></script>
-  </body>
-  </html>
+
+</body>
+</html>

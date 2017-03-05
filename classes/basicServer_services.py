@@ -57,6 +57,10 @@ class BaseServices:
         self.app.add_url_rule(WSGI_PATH_PREFIX + '/services/vehicleExit', 'vehicleExit', self.vehicleExit,
                               methods=['POST', 'GET'])
 
+        self.app.add_url_rule(WSGI_PATH_PREFIX + '/services/getAllParkingData', 'getAllParkingData', self.getAllParkingData,
+                              methods=['POST', 'GET'])
+
+
 
     def demo(self):
         return  'In DEMO method'
@@ -76,7 +80,8 @@ class BaseServices:
         status = params_data.get("status")
         print "id = ",id
         print "status = ",status
-        self.updateTotalOccupied(id,1)
+        self.updateTotalOccupied(id,+1)
+
         # self.sendMessage("**************BUTTON PRESSED******************")
         return "**************BUTTON PRESSED******************"
 
@@ -122,6 +127,22 @@ class BaseServices:
     def getTotalCount(self, parkingLot):
         record = database.totalAvailable.find_one({"id":parkingLot})
         return record
+
+    def getAllParkingData(self):
+        records = database.totalAvailable.find()
+        _list = []
+        _dict = {}
+        for rec in records:
+            # print rec
+            _list.append(rec)
+            # del _dict['_id']
+            print "***************",rec["id"]
+            id = rec['id']
+            _dict[id] = {"total":rec["total"],"occupied":rec["occupied"]}
+
+        # return "oooooo"
+        print _dict
+        return jsonify( _dict)
 
 
 

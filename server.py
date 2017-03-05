@@ -17,7 +17,7 @@ class Config():
         self.srvs = services.register_services(app, WSGI_PATH_PREFIX)
 
 # create application
-application = flask.Flask(__name__)
+application = flask.Flask(__name__, static_url_path='/static/')
 application.config['CONFIG_PATH'] = config_path
 cfg = None
 
@@ -38,7 +38,8 @@ def set_wsgi_prefix(prefix='/'):
 @application.route(WSGI_PATH_PREFIX + '/')
 def root():
     print 'comming in root'
-    return redirect(url_for('index'))
+    # return redirect(url_for('index'))
+    return application.send_static_file('Smart_Lot.html')
 
 if __name__ == '__main__':
     WSGI_PATH_PREFIX = '/basicServer'

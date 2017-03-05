@@ -27,24 +27,35 @@
       </div>
     </div>
   </nav>
-  <h2> Parking Lot 3 </h2>
+  <h2> West Drive Garage South </h2>
   <div ng-app="myApp" ng-controller="myCtrl" data-ng-init="fetch()">
-    <table>
-      <tr>
-        <td> Floor 1: </td>
-        <td> <input ng-model="floor1" data-ng-change="change()"> </td>
-        <td style = "background-color: {{floor1Col}}" ng-model="floor1Col"> {{floor1Space}} </td>
-      </tr>
-      <tr>
-        <td> Floor 2: </td>
-        <td> <input ng-model="floor2" data-ng-change="change()"> </td>
-        <td style = "background-color: {{floor2Col}}" ng-model="floor2Col"> {{floor2Space}} </td>
-      </tr>
-      <tr>
-        <td> Total Cars in Garage: </td>
-        <td> {{total_cars}} </td>
-      </tr>
-    </table>
+    <!--<table>-->
+      <!--<tr>-->
+        <!--<td> Floor 1: </td>-->
+        <!--<td> <input ng-model="floor1" data-ng-change="change()"> </td>-->
+        <!--<td style = "background-color: {{floor1Col}}" ng-model="floor1Col"> {{floor1Space}} </td>-->
+      <!--</tr>-->
+      <!--<tr>-->
+        <!--<td> Floor 2: </td>-->
+        <!--<td> <input ng-model="floor2" data-ng-change="change()"> </td>-->
+        <!--<td style = "background-color: {{floor2Col}}" ng-model="floor2Col"> {{floor2Space}} </td>-->
+      <!--</tr>-->
+      <!--<tr>-->
+        <!--<td> Total Cars in Garage: </td>-->
+        <!--<td> {{total_cars}} </td>-->
+      <!--</tr>-->
+    <!--</table>-->
+
+    <div class="col-md-6 col-sm-4 col-xs-6 thumbnail" style="background-color: rgb(27,201,142);">
+    <h1>Floor 1</h1>
+      <h1> {{ totalCarsData.data["IN101"]["occupied"] }} / {{ totalCarsData.data["IN101"]["total"] }}</h1>
+  </div>
+  <div class="col-md-6 col-sm-4 col-xs-6 thumbnail" style="background-color: rgb(228,216,54)">
+    <h1>Floor 2</h1>
+      <h1> {{ totalCarsData.data["IN101"]["occupied"] }} / {{ totalCarsData.data["IN101"]["total"] }}</h1>
+  </div>
+
+
   </div>
 
   <script src="./smart_lot_script.js"></script>
